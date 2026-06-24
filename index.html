@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>关东+关西 7日 · 东京镰仓大阪京都奈良</title>
-<meta name="description" content="7月10-16日，东京进大阪出，5-6人团">
+<title>关东+关西 6日 · 东京镰仓大阪京都</title>
+<meta name="description" content="7月10-15日，东京进大阪出，5-6人团">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -137,172 +137,142 @@ const HOTEL = { name: '新宿区酒店', lat: 35.6895, lng: 139.6995 };
 const DAYS = [
   { id: 0, label: '总览', color: '#0071e3', locations: [] },
 
-  { id: 1, label: 'D1 新宿', date: '7/10 周四 · 着陆', title: '新宿着陆 + Omakase', color: '#ff9500', locations: [
-    { name: '东京都厅展望台', lat: 35.6897, lng: 139.6917, type: 'spot', time: '15:00',
-      desc: '免费俯瞰东京，天气好能看到富士山', gmap: 'Tokyo+Metropolitan+Government+Building+Observatory',
-      xhsKeyword: '东京都厅展望台 新宿' },
-    { name: 'Sushi Tokyo Ten 新宿', lat: 35.6890, lng: 139.7004, type: 'food', time: '19:00',
-      desc: '入门级 omakase，¥8,800/人。需提前2-4周预约6人桌', budget: '¥8,800/人',
-      detail: '山形牛+时令鱼获，性价比高的东京入门omakase。\n电话预约：+81-3-XXXX-XXXX\n建议7月初就订，暑假旺季6人桌秒没。',
-      pay: { cash: 0.5, card: 1, suica: 0.5 }, xhsKeyword: 'Sushi Tokyo Ten 新宿 omakase',
-      gmap: 'Sushi+Tokyo+Ten+Shinjuku' },
-    { name: '思い出横丁', lat: 35.6938, lng: 139.6987, type: 'food', time: '—',
-      desc: '新宿烧鸟一条街，几十家居酒屋随便挑', budget: '¥2,000-3,000/人',
-      pay: { cash: 1, card: 0.5, suica: 0.5 }, xhsKeyword: '思出横丁 新宿 烧鸟',
-      gmap: 'Omoide+Yokocho+Shinjuku' },
-    { name: '焼肉うしかね', lat: 35.6875, lng: 139.7100, type: 'food', time: '—',
-      desc: '山形牛烤肉，评分4.5，不排队比挤网红29强', budget: '¥5,000/人',
-      pay: { cash: 0.5, card: 1 }, xhsKeyword: '焼肉うしかね 新宿',
-      gmap: '焼肉うしかね+新宿御苑前' }
+  { id: 1, label: 'D1 东京', date: '7/10 周四 · 着陆', title: '东京塔 + 涩谷夜景 🌃', color: '#ff9500', locations: [
+    { name: '东京塔', lat: 35.6586, lng: 139.7454, type: 'spot', time: '15:00',
+      desc: '东京地标，150m/250m双展望台。下午光好，黄昏前到看日落', budget: '¥1,200',
+      gmap: 'Tokyo+Tower', xhsKeyword: '东京塔 展望台' },
+    { name: '六本木·涩谷 晚餐', lat: 35.6600, lng: 139.7000, type: 'food', time: '17:30',
+      desc: '东京塔附近 or 涩谷商圈吃晚饭，吃完直奔Shibuya Sky', budget: '¥2,000-3,000/人',
+      pay: { cash: 0.5, card: 1 }, gmap: '六本木+居酒屋' },
+    { name: 'SHIBUYA SKY', lat: 35.6580, lng: 139.7016, type: 'spot', time: '19:00',
+      desc: '360°露天展望台，东京夜景No.1。需要提前买票，黄昏时段秒没', budget: '¥2,200',
+      detail: '官网提前1-2周买票。黄昏/夜间时段最抢手。\\nScramble Square 14楼入口。\\n屋顶禁止带包，楼下有免费储物柜。',
+      reserve: 'https://www.shibuya-scramble-square.com/sky/', gmap: 'Shibuya+Sky', xhsKeyword: 'SHIBUYA SKY 涩谷天空' },
   ]},
 
-  { id: 2, label: 'D2 镰仓', date: '7/11 周五 · 镰仓一日', title: '镰仓 · 海边古城', color: '#007aff', locations: [
-    { name: '镰仓大佛（高德院）', lat: 35.3169, lng: 139.5356, type: 'spot', time: '9:30',
-      desc: '国宝青铜大佛，镰仓标志', budget: '¥300',
-      gmap: 'Kotoku-in+Kamakura+Daibutsu', xhsKeyword: '镰仓大佛 高德院' },
-    { name: '长谷寺', lat: 35.3123, lng: 139.5334, type: 'spot', time: '10:30',
-      desc: '绣球花名所，展望台看镰仓海岸线', budget: '¥400',
-      gmap: 'Hase-dera+Kamakura', xhsKeyword: '长谷寺 镰仓 绣球花' },
-    { name: '小町通', lat: 35.3194, lng: 139.5502, type: 'food', time: '12:00',
-      desc: '镰仓商店街，抹茶冰淇淋+小银鱼盖饭', budget: '¥1,500/人',
-      gmap: 'Komachi-dori+Kamakura', xhsKeyword: '镰仓小町通 美食' },
-    { name: '鹤冈八幡宫', lat: 35.3260, lng: 139.5564, type: 'spot', time: '14:00',
-      desc: '镰仓的心脏，800年神社，大石段爬上很壮观', budget: '免费',
-      gmap: 'Tsurugaoka+Hachimangu', xhsKeyword: '鹤冈八幡宫 镰仓' },
-    { name: '镰仓高校前站', lat: 35.3064, lng: 139.4954, type: 'spot', time: '16:00',
-      desc: '灌篮高手经典路口，江之电沿海', budget: '免费',
-      gmap: 'Kamakurakokomae+Station', xhsKeyword: '镰仓高校前 灌篮高手' }
-  ]},
-
-  { id: 3, label: 'D3 东京→大阪', date: '7/12 周六', title: '浅草晴空塔 → 大阪', color: '#34c759', locations: [
-    { name: '浅草寺·雷门', lat: 35.7148, lng: 139.7967, type: 'spot', time: '8:00',
+  { id: 2, label: 'D2 镰仓', date: '7/11 周五', title: '浅草 → 镰仓 → 新干线 🚄', color: '#007aff', locations: [
+    { name: '浅草寺·雷门', lat: 35.7148, lng: 139.7967, type: 'spot', time: '9:00',
       desc: '东京最古老寺庙，雷门大灯笼+仲见世通小吃街', budget: '免费',
-      gmap: 'Sensoji+Asakusa', xhsKeyword: '浅草寺 雷门 东京' },
+      gmap: 'Sensoji+Asakusa', xhsKeyword: '浅草寺 雷门' },
     { name: '东京晴空塔', lat: 35.7101, lng: 139.8107, type: 'spot', time: '10:30',
-      desc: '634m，世界最高电波塔。浅草步行过桥即到', budget: '¥2,100', gmap: 'Tokyo+Skytree' },
-    { name: '秋叶原', lat: 35.7023, lng: 139.7745, type: 'spot', time: '12:00',
-      desc: '二次元圣地，电器街。逛到14点赶新干线', budget: '自由消费',
-      gmap: 'Akihabara+Tokyo', xhsKeyword: '秋叶原 动漫 电器街' },
-    { name: '东京站·新干线', lat: 35.6812, lng: 139.7671, type: 'transport', time: '14:30',
-      desc: '新干线希望号→新大阪，约2.5小时', budget: '¥14,720',
+      desc: '634m世界最高电波塔，浅草步行过桥即到。楼下拍完就走，不用上塔', budget: '免费（外观）',
+      gmap: 'Tokyo+Skytree' },
+    { name: '镰仓高校前站', lat: 35.3064, lng: 139.4954, type: 'spot', time: '13:00',
+      desc: '灌篮高手经典路口！江之电沿海，拍照30min足够', budget: '免费',
+      gmap: 'Kamakurakokomae+Station', xhsKeyword: '镰仓高校前 灌篮高手' },
+    { name: '小町通午饭', lat: 35.3194, lng: 139.5502, type: 'food', time: '13:30',
+      desc: '镰仓商店街，抹茶冰淇淋+小银鱼盖饭+可乐饼', budget: '¥1,500/人',
+      gmap: 'Komachi-dori+Kamakura', xhsKeyword: '镰仓小町通 美食' },
+    { name: '东京站·新干线', lat: 35.6812, lng: 139.7671, type: 'transport', time: '16:30~',
+      desc: '回新宿取行李→东京站→希望号→新大阪，约2.5h', budget: '¥14,720',
+      detail: '末班希望号约21:23，不用赶最早那班。\\n暑假周六建议提前一天买指定席。\\n站内买駅弁（便当）上车吃。',
       gmap: 'Tokyo+Station' },
-    { name: '肉剧场 道顿堀', lat: 34.6687, lng: 135.5020, type: 'food', time: '18:30',
-      desc: '量大管饱的烤肉盖饭，464赞小红书神店', budget: '¥1,600-2,400/人',
-      pay: { cash: 1, card: 0.5 }, xhsKeyword: '道顿堀肉剧场 大阪',
-      gmap: '肉劇場+道頓堀+大阪' },
-    { name: '道顿堀·心斋桥', lat: 34.6683, lng: 135.5012, type: 'spot', time: '20:00',
-      desc: '格力高广告牌+霓虹灯河，大阪夜生活中心', budget: '免费',
-      gmap: 'Dotonbori+Osaka', xhsKeyword: '道顿堀 心斋桥 夜景' }
   ]},
 
-  { id: 4, label: 'D4 USJ', date: '7/13 周日', title: '🔒 环球影城全天', color: '#af52de', locations: [
+  { id: 3, label: 'D3 USJ', date: '7/12 周六', title: '🔒 环球影城全天', color: '#af52de', locations: [
     { name: '日本环球影城', lat: 34.6653, lng: 135.4324, type: 'spot', time: '7:00',
       desc: '7点前到门口排第一批！任天堂园区整理券+Express Pass必备', budget: '¥8,600+Express',
-      detail: '暑期周日=巨多人。Express Pass 4已含哈利波特+任天堂。\n进园先抢任天堂整理券，然后冲哈利波特。\n午餐园内解决：三把扫帚酒吧/马里奥蘑菇披萨。',
+      detail: '暑假周六=巨多人。Express Pass 4已含哈利波特+任天堂。\\n进园先抢任天堂整理券，然后冲哈利波特。\\n午餐园内解决：三把扫帚酒吧/马里奥蘑菇披萨。\\nマリオカート赛车排队最久，开园直奔。',
       gmap: 'Universal+Studios+Japan', xhsKeyword: 'USJ环球影城 任天堂 攻略',
       reserve: 'https://www.usj.co.jp/ticket/' }
   ]},
 
-  { id: 5, label: 'D5 奈良', date: '7/14 周一', title: '奈良 · 鹿与古寺', color: '#ff3b30', locations: [
-    { name: '奈良公园', lat: 34.6852, lng: 135.8430, type: 'spot', time: '10:00',
-      desc: '上千只鹿自由漫步，买鹿仙贝就会被围攻', budget: '¥200（鹿仙贝）',
-      gmap: 'Nara+Park', xhsKeyword: '奈良公园 小鹿' },
-    { name: '东大寺大佛殿', lat: 34.6889, lng: 135.8398, type: 'spot', time: '11:00',
-      desc: '世界最大木造建筑，15米高大佛', budget: '¥600',
-      gmap: 'Todai-ji+Nara', xhsKeyword: '东大寺 奈良大佛' },
-    { name: '釜饭 奈良屋 东大寺店', lat: 34.6877, lng: 135.8418, type: 'food', time: '12:30',
-      desc: '东大寺门口右转，鳗鱼/牛肉釜饭，不排队', budget: '¥2,000/人',
-      detail: '奈良特色釜饭=日式煲仔饭。鳗鱼鲜嫩不腥，牛肉软嫩。\n套餐含小鹿饼（豆沙馅）。人均不到100RMB。\n传统手写等位，通常<10分钟。',
-      pay: { cash: 1, card: 0.5 }, xhsKeyword: '釜饭 奈良屋 东大寺',
-      gmap: '釜飯+奈良屋+東大寺' },
-    { name: '春日大社', lat: 34.6814, lng: 135.8483, type: 'spot', time: '14:00',
-      desc: '3000座石灯笼，千年神社，森林里的神殿', budget: '¥500',
-      gmap: 'Kasuga+Taisha+Nara', xhsKeyword: '春日大社 石灯笼' }
+  { id: 4, label: 'D4 大阪→京都', date: '7/13 周日', title: '大阪市场 → 京都', color: '#34c759', locations: [
+    { name: '黑门市场', lat: 34.6676, lng: 135.5064, type: 'food', time: '9:00',
+      desc: '大阪的厨房！关东煮+海胆+和牛串+章鱼烧，边逛边吃', budget: '¥2,000-3,000/人',
+      detail: '推荐：石桥关东煮、现开海胆、烤扇贝、和牛串。\\n黑门市场11点后人多，早点去。',
+      pay: { cash: 1, card: 0.5, suica: 0.5 },
+      gmap: 'Kuromon+Market+Osaka', xhsKeyword: '黑门市场 大阪 必吃' },
+    { name: '心斋桥·道顿堀', lat: 34.6683, lng: 135.5012, type: 'spot', time: '11:00',
+      desc: '格力高广告牌打卡，逛到午饭', budget: '自由消费',
+      gmap: 'Shinsaibashi+Osaka', xhsKeyword: '心斋桥 道顿堀' },
+    { name: '京都站', lat: 34.9858, lng: 135.7585, type: 'transport', time: '14:00',
+      desc: '难波→大阪站→JR京都线 约30min。先放行李', budget: '¥580',
+      gmap: 'Kyoto+Station' },
+    { name: '伏见稻荷大社', lat: 34.9671, lng: 135.7727, type: 'spot', time: '15:30',
+      desc: '千本鸟居隧道，越往上人越少。免门票，不限时，黄昏光线最美', budget: '免费',
+      gmap: 'Fushimi+Inari+Taisha', xhsKeyword: '伏见稻荷 千本鸟居 黄昏' },
+    { name: '京都晚餐', lat: 35.0036, lng: 135.7769, type: 'food', time: '18:00',
+      desc: '祇园/河原町一带，鸭川边居酒屋 or 先斗町小街', budget: '¥3,000/人',
+      pay: { cash: 0.5, card: 1 }, gmap: '先斗町+京都+居酒屋' },
   ]},
 
-  { id: 6, label: 'D6 京都', date: '7/15 周二 · 包车', title: '京都 · 千年古都 🚗', color: '#ff2d55', locations: [
-    { name: '伏见稻荷大社', lat: 34.9671, lng: 135.7727, type: 'spot', time: '8:00',
-      desc: '早起先去！千本鸟居隧道，越往上人越少', budget: '免费',
-      gmap: 'Fushimi+Inari+Taisha', xhsKeyword: '伏见稻荷 千本鸟居' },
-    { name: '清水寺', lat: 34.9949, lng: 135.7850, type: 'spot', time: '10:30',
-      desc: '京都名片，悬空大舞台，音羽瀑布三股水', budget: '¥400',
+  { id: 5, label: 'D5 京都', date: '7/14 周一', title: '京都 · 千年古都', color: '#ff2d55', locations: [
+    { name: '清水寺', lat: 34.9949, lng: 135.7850, type: 'spot', time: '8:30',
+      desc: '京都名片，悬空大舞台，音羽瀑布三股水。周一比周日人少很多', budget: '¥400',
       gmap: 'Kiyomizu-dera+Kyoto', xhsKeyword: '清水寺 京都' },
-    { name: '二三年坂', lat: 34.9956, lng: 135.7827, type: 'spot', time: '11:30',
-      desc: '清水寺下坡石板路，江户风情店铺', budget: '自由消费',
+    { name: '二三年坂', lat: 34.9956, lng: 135.7827, type: 'spot', time: '10:00',
+      desc: '清水寺下坡石板路，江户风情店铺，逛到午饭', budget: '自由消费',
       gmap: 'Ninenzaka+Sannenzaka+Kyoto' },
     { name: '釜座 鳗鱼饭', lat: 34.9958, lng: 135.7815, type: 'food', time: '12:00',
-      desc: '二三年坂顺路，鳗鱼煎得香，不排队', budget: '¥2,000/人',
-      detail: '1287赞小红书笔记力推。\n鳗鱼煎得香配上酱汁下饭，性价比高于其他鳗鱼饭店。\n中午不用排队，吃完就去MACCHA HOUSE。',
+      desc: '二三年坂顺路，鳗鱼煎得香，1287赞小红书神店', budget: '¥2,000/人',
+      detail: '鳗鱼煎得香配上酱汁下饭，性价比高。\\n中午不用排队。\\n吃完去MACCHA HOUSE甜点。',
       pay: { cash: 0.5, card: 1 }, xhsKeyword: '釜座 京都 鳗鱼饭',
       gmap: '釜座+京都+二三年坂' },
     { name: 'MACCHA HOUSE 抹茶館', lat: 34.9950, lng: 135.7837, type: 'drink', time: '13:00',
-      desc: '清水寺旁，抹茶提拉米苏惊艳，空调足适合歇脚', budget: '¥1,200/人',
+      desc: '抹茶提拉米苏惊艳，空调足适合歇脚', budget: '¥1,200/人',
       pay: { cash: 0.5, card: 1 }, xhsKeyword: 'MACCHA HOUSE 抹茶館 清水寺',
       gmap: 'MACCHA+HOUSE+抹茶館+京都' },
-    { name: '祇园·花见小路', lat: 35.0036, lng: 135.7769, type: 'spot', time: '15:00',
-      desc: '京都花街，运气好能碰到艺伎', budget: '免费',
-      gmap: 'Gion+Kyoto', xhsKeyword: '祇园 花见小路 京都' }
+    { name: '祇园·花见小路', lat: 35.0036, lng: 135.7769, type: 'spot', time: '14:30',
+      desc: '京都花街，运气好能碰到艺伎。鸭川边散步', budget: '免费',
+      gmap: 'Gion+Kyoto', xhsKeyword: '祇园 花见小路 京都' },
+    { name: '锦市场', lat: 35.0050, lng: 135.7676, type: 'food', time: '16:30',
+      desc: '京都的厨房，400年历史。锦天满宫也在旁边', budget: '¥2,000/人',
+      pay: { cash: 1, card: 0.5 }, gmap: 'Nishiki+Market+Kyoto', xhsKeyword: '锦市场 京都' },
   ]},
 
-  { id: 7, label: 'D7 大阪→香港', date: '7/16 周三', title: '黑门市场 → 关西机场', color: '#86868b', locations: [
-    { name: '黑门市场', lat: 34.6676, lng: 135.5064, type: 'food', time: '9:00',
-      desc: '大阪的厨房！关东煮+海鲜+和牛串，边逛边吃', budget: '¥3,000/人',
-      detail: '推荐：石桥关东煮、现开海胆、烤扇贝、和牛串、章鱼烧。\n6个人各买各的，逛吃模式最后一天放纵一下。',
-      pay: { cash: 1, card: 0.5, suica: 0.5 }, xhsKeyword: '黑门市场 大阪 必吃',
-      gmap: 'Kuromon+Market+Osaka' },
-    { name: '关西国际机场', lat: 34.4344, lng: 135.2454, type: 'transport', time: '15:00',
-      desc: '难波坐南海电铁约40分钟。暑假提前3小时到', budget: '¥1,450',
+  { id: 6, label: 'D6 返程', date: '7/15 周二', title: '京都 → 关西机场 ✈️', color: '#86868b', locations: [
+    { name: '关西国际机场', lat: 34.4344, lng: 135.2454, type: 'transport', time: '上午',
+      desc: '京都站 Haruka 特急约 75 分钟。暑假提前 3 小时到机场', budget: '¥2,850',
+      detail: 'Haruka 特急：京都站直达关西机场。\\n首班 5:45，每 30 分钟一班。\\nSuica 可用，自由席即可。',
       gmap: 'Kansai+International+Airport' }
   ]}
 ];
 
 function overviewContent() {
   return `
-<div class="hero"><h1>关东+关西 7日</h1><p class="subtitle">东京→镰仓→大阪→奈良→京都 · 5-6人团</p></div>
+<div class="hero"><h1>关东+关西 6日</h1><p class="subtitle">东京→镰仓→大阪→京都 · 5-6人团</p></div>
 <div class="info-grid">
-  <div class="info-card"><div class="label">酒店</div><div class="value">新宿2晚 + 难波4晚<br><span style="font-size:12px;color:var(--text-tertiary)">2人拼房 人均¥300/晚</span></div></div>
-  <div class="info-card"><div class="label">航班</div><div class="value">HKG→NRT<br>KIX→HKG<br><span style="font-size:12px;color:var(--text-tertiary)">开口票≈¥2,500</span></div></div>
-  <div class="info-card"><div class="label">交通卡</div><div class="value">Suica西瓜卡<br><span style="font-size:12px;color:var(--text-tertiary)">Apple钱包直接添加</span></div></div>
-  <div class="info-card"><div class="label">人均预算</div><div class="value">≈¥8,300<br><span style="font-size:12px;color:var(--text-tertiary)">含机票酒店吃饭门票</span></div></div>
+  <div class="info-card"><div class="label">酒店</div><div class="value">新宿1晚 + 难波2晚 + 京都2晚<br><span style="font-size:12px;color:var(--text-tertiary)">2人拼房 人均¥300/晚</span></div></div>
+  <div class="info-card"><div class="label">航班</div><div class="value">CAN→NRT<br>KIX→CAN<br><span style="font-size:12px;color:var(--text-tertiary)">开口票≈¥2,500</span></div></div>
+  <div class="info-card"><div class="label">交通卡</div><div class="value">Suica西瓜卡<br><span style="font-size:12px;color:var(--text-tertiary)">iPhone钱包直接添加</span></div></div>
+  <div class="info-card"><div class="label">人均预算</div><div class="value">≈¥7,000<br><span style="font-size:12px;color:var(--text-tertiary)">含机票酒店吃饭门票</span></div></div>
 </div>
 
 <div class="section-head">行程概览</div>
 <div class="day-list">
-  <div class="card" onclick="go(1)"><div class="name"><span class="dot" style="background:#ff9500"></span>D1 · 新宿着陆 + Omakase 🍣</div><div class="desc">7/10 周四 · 东京都厅+思い出横丁</div></div>
-  <div class="card" onclick="go(2)"><div class="name"><span class="dot" style="background:#007aff"></span>D2 · 镰仓一日 🌊</div><div class="desc">7/11 周五 · 大佛+八幡宫+灌篮高手路口</div></div>
-  <div class="card" onclick="go(3)"><div class="name"><span class="dot" style="background:#34c759"></span>D3 · 浅草晴空塔 → 大阪 🚄</div><div class="desc">7/12 周六 · 秋叶原+新干线+道顿堀</div></div>
-  <div class="card" onclick="go(4)"><div class="name"><span class="dot" style="background:#af52de"></span>D4 · 环球影城 🔒</div><div class="desc">7/13 周日 · USJ全天</div></div>
-  <div class="card" onclick="go(5)"><div class="name"><span class="dot" style="background:#ff3b30"></span>D5 · 奈良 🦌</div><div class="desc">7/14 周一 · 鹿+东大寺+釜饭</div></div>
-  <div class="card" onclick="go(6)"><div class="name"><span class="dot" style="background:#ff2d55"></span>D6 · 京都 🚗</div><div class="desc">7/15 周二 · 包车·伏见稻荷→清水寺→祇园</div></div>
-  <div class="card" onclick="go(7)"><div class="name"><span class="dot" style="background:#86868b"></span>D7 · 返程 ✈️</div><div class="desc">7/16 周三 · 黑门市场→关西机场</div></div>
+  <div class="card" onclick="go(1)"><div class="name"><span class="dot" style="background:#ff9500"></span>D1 · 东京塔 + 涩谷 🌃</div><div class="desc">7/10 周四 · Shibuya Sky 夜景</div></div>
+  <div class="card" onclick="go(2)"><div class="name"><span class="dot" style="background:#007aff"></span>D2 · 浅草→镰仓→大阪 🚄</div><div class="desc">7/11 周五 · 灌篮高手路口+新干线</div></div>
+  <div class="card" onclick="go(3)"><div class="name"><span class="dot" style="background:#af52de"></span>D3 · 环球影城 🔒</div><div class="desc">7/12 周六 · USJ全天</div></div>
+  <div class="card" onclick="go(4)"><div class="name"><span class="dot" style="background:#34c759"></span>D4 · 大阪→京都</div><div class="desc">7/13 周日 · 黑门市场→伏见稻荷</div></div>
+  <div class="card" onclick="go(5)"><div class="name"><span class="dot" style="background:#ff2d55"></span>D5 · 京都 🏯</div><div class="desc">7/14 周一 · 清水寺→祇园→锦市场</div></div>
+  <div class="card" onclick="go(6)"><div class="name"><span class="dot" style="background:#86868b"></span>D6 · 返程 ✈️</div><div class="desc">7/15 周二 · Haruka→关西机场→广州</div></div>
 </div>
 
 <div class="section-head">支付提醒</div>
 <div class="pay-summary">
-  <h4>💴 日本现金为王</h4>
-  <p>小店、老铺、神社只收现金。每人准备 <strong>¥30,000-50,000 日元现金</strong>（≈1,500-2,500 RMB）。</p>
+  <h4>💴 现金为王</h4>
+  <p>小店、老铺、神社只收现金。每人准备 <strong>¥30,000-50,000 日元</strong>（≈1,500-2,500 RMB）。</p>
   <p style="margin-top:4px"><span class="warn">⚠ 7-11 ATM 手续费低，可到了再取。</span></p>
 </div>
 <div class="pay-summary">
   <h4>💳 卡与电子支付</h4>
   <p>大商场、连锁餐厅支持信用卡（Visa/Master）。</p>
-  <p>Suica 西瓜卡覆盖所有地铁/JR + 便利店，<strong>iPhone 钱包直接添加</strong>。</p>
+  <p>Suica 覆盖地铁/JR+便利店，<strong>iPhone 钱包直接添加</strong>。</p>
   <p>支付宝/微信：部分药妆店、百货可用，但不普遍。</p>
 </div>
 
 <div class="section-head">预算明细</div>
 <div class="pay-summary">
   <table style="width:100%;font-size:13px;line-height:2">
-    <tr><td>✈️ 机票（开口）</td><td style="text-align:right">¥2,500</td></tr>
+    <tr><td>✈️ 机票（广州开口）</td><td style="text-align:right">¥2,500</td></tr>
     <tr><td>🚄 新干线 东京→大阪</td><td style="text-align:right">¥750</td></tr>
-    <tr><td>🏨 酒店 6晚（拼住）</td><td style="text-align:right">¥1,800</td></tr>
+    <tr><td>🏨 酒店 5晚（拼住）</td><td style="text-align:right">¥1,500</td></tr>
     <tr><td>🎢 USJ 门票+快通</td><td style="text-align:right">¥800</td></tr>
-    <tr><td>🚗 京都包车（6人摊）</td><td style="text-align:right">¥420</td></tr>
-    <tr><td>🍣 Omakase</td><td style="text-align:right">¥440</td></tr>
-    <tr><td>🍜 日常吃饭</td><td style="text-align:right">¥1,100</td></tr>
-    <tr><td>🚃 市内交通</td><td style="text-align:right">¥400</td></tr>
+    <tr><td>🍜 日常吃饭</td><td style="text-align:right">¥1,000</td></tr>
+    <tr><td>🚃 市内交通</td><td style="text-align:right">¥350</td></tr>
     <tr><td>🏛️ 其他门票</td><td style="text-align:right">¥100</td></tr>
-    <tr><td style="font-weight:700;border-top:1px solid var(--separator)">合计</td><td style="text-align:right;font-weight:700;border-top:1px solid var(--separator)">≈¥8,310</td></tr>
+    <tr><td style="font-weight:700;border-top:1px solid var(--separator)">合计</td><td style="text-align:right;font-weight:700;border-top:1px solid var(--separator)">≈¥7,000</td></tr>
   </table>
 </div>
 
@@ -439,7 +409,7 @@ function locCard(loc, dayIdx) {
     lnk += `<a href="${dpHref}" onclick="return openExt('${locKey.replace(/'/g,"\\'")}','dp')" class="btn dp">${dpLabel}</a>`;
   }
   if(loc.reserve) lnk += `<a href="${loc.reserve}" target="_blank" class="btn rsv">📅 预约</a>`;
-  return `<div class="tl-item"><div class="tl-dot ${dot}"></div><div class="card" onclick="if(!event.target.closest('.btn,.links'))toggle('${uid}')"><div class="time">${loc.time!=='—'?loc.time:'备选'}</div><div class="name">${bdg} ${loc.name}</div><div class="desc">${loc.desc}</div>${loc.budget?'<div class="budget">'+loc.budget+'</div>':''}${payChips(loc.pay)}<div class="links">${lnk}</div>${loc.detail?'<div class="details" id=\"'+uid+'\">'+loc.detail.replace(/\n/g,'<br>')+'</div>':''}</div></div>`;
+  return `<div class="tl-item"><div class="tl-dot ${dot}"></div><div class="card" onclick="if(!event.target.closest('.btn,.links'))toggle('${uid}')"><div class="time">${loc.time!=='—'?loc.time:'备选'}</div><div class="name">${bdg} ${loc.name}</div><div class="desc">${loc.desc}</div>${loc.budget?'<div class="budget">'+loc.budget+'</div>':''}${payChips(loc.pay)}<div class="links">${lnk}</div>${loc.detail?'<div class="details" id=\\"'+uid+'\\">'+loc.detail.replace(/\\n/g,'<br>')+'</div>':''}</div></div>`;
 }
 
 function renderDay(idx) {
