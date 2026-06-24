@@ -208,10 +208,14 @@ const DAYS = [
       gmap: '先斗町+京都+居酒屋' },
   ]},
 
-  { id: 5, label: 'D5 京都', date: '7/14 周一', title: '京都 · 千年古都', color: '#ff2d55', locations: [
-    { name: '清水寺', lat: 34.9949, lng: 135.7850, type: 'spot', time: '8:30',
-      desc: '京都名片，悬空大舞台，音羽瀑布三股水。周一比周日人少很多', budget: '¥400',
-      gmap: 'Kiyomizu-dera+Kyoto', xhsKeyword: '清水寺 京都' },
+  { id: 5, label: 'D5 京都', date: '7/14 周一', title: '和服 + 祇园祭 🎎', color: '#ff2d55', locations: [
+    { name: '和服租赁（清水寺周边）', lat: 34.9955, lng: 135.7820, type: 'spot', time: '8:00',
+      desc: '清水寺附近超多和服店，提前网上约。穿和服约40min，傍晚前还', budget: '¥4,000-6,000/人',
+      detail: '推荐：夢館、岡本、てくてく京都。\\\\n建议网上提前预约，暑假旺季现场可能没号。\\\\n含和服+腰带+足袋+草履+发型。\\\\n一般17:00-18:00前归还。',
+      gmap: '着物レンタル+清水寺+京都', xhsKeyword: '京都 和服租赁 清水寺', reserve: 'https://www.okamoto-kimono.com/' },
+    { name: '清水寺', lat: 34.9949, lng: 135.7850, type: 'spot', time: '9:00',
+      desc: '穿和服拍照！悬空大舞台+音羽瀑布。周一人比周日少', budget: '¥400',
+      gmap: 'Kiyomizu-dera+Kyoto', xhsKeyword: '清水寺 和服 拍照' },
     { name: '二三年坂', lat: 34.9956, lng: 135.7827, type: 'spot', time: '10:00',
       desc: '清水寺下坡石板路，江户风情店铺，逛到午饭', budget: '自由消费',
       gmap: 'Ninenzaka+Sannenzaka+Kyoto' },
@@ -225,11 +229,12 @@ const DAYS = [
       pay: { cash: 0.5, card: 1 }, xhsKeyword: 'MACCHA HOUSE 抹茶館 清水寺',
       gmap: 'MACCHA+HOUSE+抹茶館+京都' },
     { name: '祇园·花见小路', lat: 35.0036, lng: 135.7769, type: 'spot', time: '14:30',
-      desc: '京都花街，运气好能碰到艺伎。鸭川边散步', budget: '免费',
-      gmap: 'Gion+Kyoto', xhsKeyword: '祇园 花见小路 京都' },
-    { name: '锦市场', lat: 35.0050, lng: 135.7676, type: 'food', time: '16:30',
-      desc: '京都的厨房，400年历史。锦天满宫也在旁边', budget: '¥2,000/人',
-      pay: { cash: 1, card: 0.5 }, gmap: 'Nishiki+Market+Kyoto', xhsKeyword: '锦市场 京都' },
+      desc: '穿和服逛花街，运气好碰到艺伎。走到四条烏丸看山鉾', budget: '免费',
+      gmap: 'Gion+Kyoto', xhsKeyword: '祇园 花见小路 和服' },
+    { name: '🎎 祇园祭·宵山', lat: 35.0037, lng: 135.7595, type: 'spot', time: '17:00',
+      desc: '四条烏丸一带，山鉾亮灯+屋台夜市，京都最大祭典前夜', budget: '¥2,000/人（屋台小吃）',
+      detail: '7/14是宵々々山，山鉾（巨型花车）晚上亮灯超壮观。\\\\n四条通封路变步行街，边走边吃：焼きそば/たこ焼き/かき氷/りんご飴。\\\\n先还和服再去，穿草履走太久脚会废。',
+      gmap: '四条烏丸+祇園祭', xhsKeyword: '祇园祭 宵山 山鉾 2025' },
   ]},
 
   { id: 6, label: 'D6 返程', date: '7/15 周二', title: '京都 → 关西机场 ✈️', color: '#86868b', locations: [
@@ -256,7 +261,7 @@ function overviewContent() {
   <div class="card" onclick="go(2)"><div class="name"><span class="dot" style="background:#007aff"></span>D2 · 浅草→镰仓→大阪 🚄</div><div class="desc">7/11 周五 · 灌篮高手路口+新干线</div></div>
   <div class="card" onclick="go(3)"><div class="name"><span class="dot" style="background:#af52de"></span>D3 · 环球影城 🔒</div><div class="desc">7/12 周六 · USJ全天</div></div>
   <div class="card" onclick="go(4)"><div class="name"><span class="dot" style="background:#34c759"></span>D4 · 大阪→京都</div><div class="desc">7/13 周日 · 黑门市场→伏见稻荷</div></div>
-  <div class="card" onclick="go(5)"><div class="name"><span class="dot" style="background:#ff2d55"></span>D5 · 京都 🏯</div><div class="desc">7/14 周一 · 清水寺→祇园→锦市场</div></div>
+  <div class="card" onclick="go(5)"><div class="name"><span class="dot" style="background:#ff2d55"></span>D5 · 和服 + 祇园祭 🎎</div><div class="desc">7/14 周一 · 清水寺→祇园→宵山夜市</div></div>
   <div class="card" onclick="go(6)"><div class="name"><span class="dot" style="background:#86868b"></span>D6 · 返程 ✈️</div><div class="desc">7/15 周二 · Haruka→关西机场→广州</div></div>
 </div>
 
